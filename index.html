@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STOK KERETA SAMBUNG LOAN</title>
+<style>
+:root {
+  --site-primary: #123c35;
+  --site-on-primary: #ffffff;
+  --site-secondary: #d6a84f;
+  --site-on-secondary: #17231f;
+  --site-background: #f2f5f1;
+  --site-on-background: #18231f;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); }
+.container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+.topbar { background: var(--site-primary); color: var(--site-on-primary); padding: 13px 0; font-size: 13px; }
+.topbar .container { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+header { background: var(--site-primary); color: var(--site-on-primary); padding: calc(26px * var(--site-spacing-scale)) 0 calc(42px * var(--site-spacing-scale)); position:relative; overflow:hidden; }
+header:after { content:""; position:absolute; width:360px; height:360px; border:1px solid rgba(255,255,255,.13); border-radius:50%; right:-100px; top:-190px; opacity:var(--site-decoration-opacity); }
+.brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.04em; }
+.brand-mark { width:42px; height:42px; display:grid; place-items:center; border-radius:13px; background:var(--site-secondary); color:var(--site-on-secondary); font-size:21px; }
+.brand small { display:block; font-size:10px; font-weight:600; letter-spacing:.18em; opacity:.75; margin-top:3px; }
+.hero { padding-top:36px; max-width:720px; position:relative; z-index:1; }
+.eyebrow { color:#f0c875; font-size:12px; letter-spacing:.16em; font-weight:800; text-transform:uppercase; }
+h1 { font-family:var(--site-font-heading); font-size:calc(clamp(32px, 5vw, 54px) * var(--site-heading-scale)); line-height:1.06; margin:12px 0; letter-spacing:-.04em; }
+.hero p { color:rgba(255,255,255,.78); line-height:1.65; max-width:580px; margin:0 0 22px; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; }
+.btn { border:0; border-radius:calc(11px * var(--site-radius-scale)); padding:12px 17px; font:700 14px var(--site-font-body); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+.btn-gold { background:var(--site-secondary); color:var(--site-on-secondary); }
+.btn-outline { border:1px solid rgba(255,255,255,.35); color:white; background:transparent; }
+main { padding:32px 0 60px; }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:-54px; position:relative; z-index:2; }
+.stat { background:light-dark(#ffffff,#202a26); border:1px solid light-dark(#e3e9e4,#34413b); border-radius:16px; padding:18px; box-shadow:0 8px 22px rgba(20,40,30,.07); }
+.stat strong { display:block; font-size:25px; color:var(--site-primary); }
+@media(prefers-color-scheme:dark){.stat strong{color:#e5c071}}
+.stat span { font-size:12px; color:light-dark(#64716a,#b5c0b9); }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:15px; margin:38px 0 17px; }
+h2 { font-size:calc(25px * var(--site-heading-scale)); margin:0 0 5px; letter-spacing:-.03em; }
+.muted { color:light-dark(#68766e,#b4c0b8); font-size:13px; }
+.filters { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+input, select, textarea { width:100%; border:1px solid light-dark(#d9e1db,#46534b); background:light-dark(#fff,#1e2923); color:var(--site-on-background); border-radius:10px; padding:12px 13px; font:14px var(--site-font-body); outline:none; }
+input:focus,select:focus,textarea:focus { border-color:var(--site-secondary); box-shadow:0 0 0 3px rgba(214,168,79,.16); }
+.search { flex:1 1 240px; }
+.filters select { flex:0 1 180px; }
+.car-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.car-card { background:light-dark(#fff,#202a26); border:1px solid light-dark(#e1e8e2,#34413b); border-radius:16px; overflow:hidden; }
+.car-visual { height:155px; background:linear-gradient(140deg,#dce6de,#a9bcb0); display:grid; place-items:center; color:#23483b; font-size:46px; position:relative; }
+.car-visual small { position:absolute; left:12px; top:12px; background:#123c35; color:white; border-radius:20px; padding:6px 10px; font-size:10px; font-weight:800; letter-spacing:.05em; }
+.car-body { padding:16px; }
+.car-body h3 { margin:0 0 7px; font-size:18px; }
+.car-meta { color:light-dark(#6a776f,#b7c1ba); font-size:12px; }
+.price-row { display:flex; justify-content:space-between; gap:10px; align-items:end; margin:15px 0; }
+.price { font-size:21px; font-weight:850; color:var(--site-primary); }
+@media(prefers-color-scheme:dark){.price{color:#e5c071}}
+.deposit { font-size:12px; color:light-dark(#64716a,#b5c0b9); text-align:right; }
+.card-actions { display:flex; gap:8px; }
+.card-actions .btn { flex:1; padding:10px; font-size:12px; }
+.btn-dark { background:var(--site-primary); color:white; }
+.btn-soft { background:light-dark(#edf2ed,#34413b); color:var(--site-on-background); }
+.empty { grid-column:1/-1; padding:42px 20px; text-align:center; border:1px dashed light-dark(#c8d4ca,#526057); border-radius:16px; }
+.empty .symbol { font-size:35px; margin-bottom:8px; }
+.panel { background:light-dark(#fff,#202a26); border:1px solid light-dark(#e1e8e2,#34413b); border-radius:16px; padding:20px; margin-top:34px; }
+.panel-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:15px; }
+.admin-gate { max-width:520px; margin:34px auto 0; }
+.admin-status { font-size:12px; color:light-dark(#68766e,#b4c0b8); margin-top:9px; }
+.admin-tools { display:flex; gap:9px; flex-wrap:wrap; margin:12px 0; }
+.admin-hidden { display:none !important; }
+.form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.field label { display:block; font-size:12px; font-weight:700; margin:0 0 6px; }
+.field.full { grid-column:1/-1; }
+.form-actions { display:flex; gap:9px; margin-top:14px; flex-wrap:wrap; }
+.notice { font-size:12px; color:light-dark(#68766e,#b4c0b8); line-height:1.6; margin-top:12px; }
+footer { background:var(--site-primary); color:rgba(255,255,255,.8); padding:25px 0; font-size:12px; }
+footer .container { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.hidden { display:none !important; }
+@media(max-width:800px){.car-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:560px){.container{width:min(100% - 26px,1120px)}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:21px}.car-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.hero{padding-top:28px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar"><div class="container"><span>STOK KERETA SAMBUNG LOAN</span><span>WhatsApp: 011-6938 0268</span></div></div>
+  <header>
+    <div class="container">
+      <div class="brand"><div class="brand-mark">🚘</div><div>STOK KERETA<small>SAMBUNG LOAN</small></div></div>
+      <div class="hero">
+        <div class="eyebrow">Pilihan kereta anda bermula di sini</div>
+        <h1>Cari kereta yang sesuai dengan bajet anda.</h1>
+        <p>Lihat senarai stok, semak harga dan deposit, kemudian hubungi kami untuk pertanyaan lanjut.</p>
+        <div class="actions"><a class="btn btn-gold" href="#stok">Lihat stok kereta ↓</a><a class="btn btn-outline" href="https://wa.me/601169380268" target="_blank" rel="noopener">WhatsApp kami</a></div>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="stats">
+      <div class="stat"><strong id="stockCount">0</strong><span>Stok dipaparkan</span></div>
+      <div class="stat"><strong>24/7</strong><span>Pertanyaan WhatsApp</span></div>
+      <div class="stat"><strong>Malaysia</strong><span>Urusan pertanyaan</span></div>
+    </div>
+    <section id="stok">
+      <div class="section-head"><div><h2>Stok kereta terkini</h2><div class="muted">Pilih kereta dan hubungi kami untuk maklumat lanjut.</div></div></div>
+      <div class="filters"><input class="search" id="search" placeholder="Cari model kereta, contoh Hilux..." aria-label="Cari kereta"><select id="typeFilter" aria-label="Tapis kategori"><option value="">Semua kategori</option><option>Pickup</option><option>Sedan</option><option>SUV</option><option>MPV</option><option>Lain-lain</option></select></div>
+      <div class="car-grid" id="carGrid"><div class="empty"><div class="symbol">🚗</div><strong>Belum ada stok dimasukkan</strong><p class="muted">Gunakan ruangan “Tambah stok kereta” di bawah untuk masukkan iklan pertama.</p></div></div>
+    </section>
+    <section class="panel admin-gate" id="adminLogin">
+      <div class="panel-head"><div><h2>Admin stok kereta</h2><div class="muted" id="loginIntro">Log masuk untuk mengurus iklan dan stok.</div></div><span>🔐</span></div>
+      <form id="loginForm">
+        <div class="field"><label for="adminEmail">Emel admin</label><input id="adminEmail" type="email" required autocomplete="username" placeholder="Emel akaun Supabase"></div>
+        <div class="field"><label for="adminPassword">Kata laluan admin</label><input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Kata laluan Supabase"></div>
+        <div class="form-actions"><button class="btn btn-dark" id="loginButton" type="submit">Log masuk admin</button></div>
+        <p class="admin-status" id="loginStatus" aria-live="polite">Kali pertama? Masukkan kata laluan baharu untuk menetapkan akses admin pada pelayar ini.</p>
+      </form>
+    </section>
+    <section class="panel admin-hidden" id="admin">
+      <div class="panel-head"><div><h2>Panel admin</h2><div class="muted">Tambah dan urus iklan stok kereta.</div></div><span>⚙️</span></div>
+      <div class="admin-tools"><button class="btn btn-soft" id="changePassword" type="button">Tukar kata laluan</button><button class="btn btn-soft" id="logoutButton" type="button">Log keluar</button></div>
+      <div class="panel-head"><div><h2>Tambah stok kereta</h2><div class="muted">Isi maklumat kereta untuk dipaparkan dalam katalog.</div></div><span>＋</span></div>
+      <form id="carForm">
+        <div class="form-grid">
+          <div class="field"><label for="model">Model kereta *</label><input id="model" required placeholder="Contoh: Toyota Hilux 2.8"></div>
+          <div class="field"><label for="year">Tahun</label><input id="year" type="number" min="1980" max="2035" placeholder="2022"></div>
+          <div class="field"><label for="category">Kategori</label><select id="category"><option>Pickup</option><option>Sedan</option><option>SUV</option><option>MPV</option><option>Lain-lain</option></select></div>
+          <div class="field"><label for="price">Harga jual (RM) *</label><input id="price" type="number" min="0" required placeholder="Contoh: 45000"></div>
+          <div class="field"><label for="deposit">Deposit (RM)</label><input id="deposit" type="number" min="0" placeholder="Contoh: 8000"></div>
+          <div class="field"><label for="monthly">Anggaran bayaran bulanan (RM)</label><input id="monthly" type="number" min="0" placeholder="Jika berkenaan"></div>
+          <div class="field"><label for="mileage">Perbatuan (km)</label><input id="mileage" placeholder="Contoh: 85000"></div>
+          <div class="field"><label for="location">Lokasi kereta</label><input id="location" placeholder="Contoh: Klang, Selangor"></div>
+          <div class="field full"><label for="notes">Catatan / maklumat tambahan</label><textarea id="notes" rows="3" placeholder="Keadaan kereta, spesifikasi dan maklumat lain..."></textarea></div>
+        </div>
+        <div class="form-actions"><button class="btn btn-dark" type="submit">＋ Simpan stok</button><button class="btn btn-soft" type="reset">Kosongkan borang</button></div>
+        <p class="notice">Stok yang ditambah disimpan dalam pelayar/peranti ini sahaja untuk prototaip. Untuk paparan dan pengurusan stok bersama dari beberapa telefon atau komputer, website perlu disambungkan kepada pangkalan data dan diterbitkan.</p>
+      </form>
+    </section>
+    <p class="notice">Makluman: Sebarang urusan berkaitan pinjaman atau pembiayaan tertakluk kepada terma perjanjian dan kelulusan pihak bank/pemberi pembiayaan. Jangan anggap pinjaman boleh dipindahkan tanpa kebenaran bertulis.</p>
+  </main>
+  <footer><div class="container"><span><strong>STOK KERETA SAMBUNG LOAN</strong></span><span>WhatsApp: 011-6938 0268</span><span>© 2026</span></div></footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  const db = window.supabase.createClient('https://zxmnrnoitybdmlfvemdy.supabase.co','sb_publishable_sdFmdWVbKNkTtR9alJ47uQ_qfqiQLfK');
+  const phone = '601169380268', grid = document.getElementById('carGrid'), form = document.getElementById('carForm'), search = document.getElementById('search'), typeFilter = document.getElementById('typeFilter'), loginForm = document.getElementById('loginForm'), loginStatus = document.getElementById('loginStatus'), adminPanel = document.getElementById('admin');
+  let cars = [], adminUnlocked = false;
+  const money = n => 'RM ' + Number(n || 0).toLocaleString('en-MY');
+  const safe = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function setAdminAccess(on){ adminUnlocked=on; adminPanel.classList.toggle('admin-hidden',!on); document.getElementById('adminLogin').classList.toggle('admin-hidden',on); if(on) adminPanel.scrollIntoView({behavior:'smooth'}); render(); }
+  async function loadCars(){ const {data,error}=await db.from('cars').select('*').order('created_at',{ascending:false}); if(error){grid.innerHTML='<div class="empty">Gagal memuat stok: '+safe(error.message)+'</div>';return;} cars=data||[]; render(); }
+  function render(){ const q=search.value.trim().toLowerCase(), cat=typeFilter.value, filtered=cars.filter(c=>(String(c.model||'').toLowerCase().includes(q)||String(c.location||'').toLowerCase().includes(q))&&(!cat||c.category===cat)); document.getElementById('stockCount').textContent=cars.length; if(!filtered.length){grid.innerHTML='<div class="empty"><div class="symbol">🚗</div><strong>Belum ada stok kereta</strong></div>';return;} grid.innerHTML=filtered.map(c=>`<article class="car-card"><div class="car-visual"><small>${safe(c.category)}</small>🚙</div><div class="car-body"><h3>${safe(c.model)}</h3><div class="car-meta">${safe(c.year||'')} ${c.mileage?' • '+safe(c.mileage)+' km':''}${c.location?' • '+safe(c.location):''}</div><div class="price-row"><div><div class="muted">Harga / baki pinjaman</div><div class="price">${money(c.price)}</div></div><div class="deposit">Deposit<br><strong>${money(c.deposit)}</strong></div></div>${c.monthly?`<div class="car-meta">Bulanan: <strong>${money(c.monthly)}</strong></div>`:''}${c.notes?`<p class="muted">${safe(c.notes)}</p>`:''}<div class="card-actions"><a class="btn btn-dark" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent('Salam, saya berminat dengan '+c.model+'. Boleh beri maklumat lanjut?')}">WhatsApp</a><button class="btn btn-soft ${adminUnlocked?'':'admin-hidden'}" data-delete="${c.id}" type="button">Padam</button></div></div></article>`).join(''); grid.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',async()=>{if(!adminUnlocked||!confirm('Padam iklan ini?'))return;const {error}=await db.from('cars').delete().eq('id',b.dataset.delete);if(error)alert(error.message);else loadCars();})); }
+  loginForm.addEventListener('submit',async e=>{e.preventDefault();loginStatus.textContent='Sedang log masuk...';const {error}=await db.auth.signInWithPassword({email:document.getElementById('adminEmail').value.trim(),password:document.getElementById('adminPassword').value});if(error){loginStatus.textContent='Gagal log masuk: '+error.message;return;}document.getElementById('adminPassword').value='';loginStatus.textContent='Log masuk berjaya.';setAdminAccess(true);});
+  document.getElementById('logoutButton').addEventListener('click',async()=>{await db.auth.signOut();setAdminAccess(false);});
+  document.getElementById('changePassword').addEventListener('click',async()=>{const next=prompt('Kata laluan baharu (minimum 6 aksara):');if(!next)return;if(next.length<6){alert('Minimum 6 aksara.');return;}const {error}=await db.auth.updateUser({password:next});alert(error?error.message:'Kata laluan berjaya ditukar.');});
+  form.addEventListener('submit',async e=>{e.preventDefault();if(!adminUnlocked){alert('Log masuk admin dahulu.');return;}const car={model:document.getElementById('model').value.trim(),year:Number(document.getElementById('year').value)||null,category:document.getElementById('category').value,price:Number(document.getElementById('price').value)||0,deposit:Number(document.getElementById('deposit').value)||0,monthly:Number(document.getElementById('monthly').value)||0,mileage:document.getElementById('mileage').value.trim(),location:document.getElementById('location').value.trim(),notes:document.getElementById('notes').value.trim()};const {error}=await db.from('cars').insert(car);if(error){alert('Gagal simpan: '+error.message);return;}form.reset();await loadCars();document.getElementById('stok').scrollIntoView({behavior:'smooth'});});
+  search.addEventListener('input',render);typeFilter.addEventListener('change',render);db.auth.getSession().then(({data})=>{if(data.session)setAdminAccess(true);});loadCars();
+})();
+</script>
+</body>
+</html>
