@@ -125,7 +125,7 @@ footer .container { display:flex; justify-content:space-between; flex-wrap:wrap;
     <section class="panel admin-hidden" id="admin">
       <div class="panel-head"><div><h2>Panel admin</h2><div class="muted">Tambah dan urus iklan stok kereta.</div></div><span>⚙️</span></div>
       <div class="admin-tools"><button class="btn btn-soft" id="changePassword" type="button">Tukar kata laluan</button><button class="btn btn-soft" id="logoutButton" type="button">Log keluar</button></div>
-      <div class="panel-head"><div><h2>Tambah stok kereta</h2><div class="muted">Isi maklumat kereta untuk dipaparkan dalam katalog.</div></div><span>＋</span></div>
+      <div class="panel-head"><div><h2 id="carFormTitle">Tambah stok kereta</h2><div class="muted">Isi maklumat kereta untuk dipaparkan dalam katalog.</div></div><span>＋</span></div>
       <form id="carForm">
         <div class="form-grid">
           <div class="field"><label for="model">Model kereta *</label><input id="model" required placeholder="Contoh: Toyota Hilux 2.8"></div>
@@ -174,7 +174,7 @@ footer .container { display:flex; justify-content:space-between; flex-wrap:wrap;
     editingCarId=car.id; fields.forEach(k=>{const el=document.getElementById(k);el.value=car[k]??'';});
     document.getElementById('saveCarButton').textContent='Simpan perubahan';
     document.getElementById('cancelEditButton').hidden=false;
-    document.querySelector('#admin .panel-head:nth-of-type(2) h2').textContent='Edit maklumat kereta';
+    document.getElementById('carFormTitle').textContent='Edit maklumat kereta';
     form.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function cancelEdit(){editingCarId=null;form.reset();document.getElementById('saveCarButton').textContent='＋ Simpan stok';document.getElementById('cancelEditButton').hidden=true;document.querySelector('#admin .panel-head:nth-of-type(2) h2').textContent='Tambah stok kereta';}
