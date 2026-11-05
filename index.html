@@ -110,6 +110,51 @@ footer .container { display:flex; justify-content:space-between; flex-wrap:wrap;
 .hidden { display:none !important; }
 @media(max-width:800px){.car-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:560px){.container{width:min(100% - 26px,1120px)}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:21px}.car-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.hero{padding-top:28px}}
+
+/* FLUX-inspired catalogue refresh */
+:root {
+  --site-primary:#111827;
+  --site-on-primary:#ffffff;
+  --site-secondary:#f4c542;
+  --site-on-secondary:#171717;
+  --site-background:#f7f8fa;
+  --site-on-background:#171a20;
+  color-scheme:light;
+}
+body{background:#f7f8fa;color:#171a20}
+.topbar{background:#fff;color:#4b5563;border-bottom:1px solid #e5e7eb;padding:10px 0}
+header{background:#fff;color:#111827;padding:20px 0 34px;border-bottom:1px solid #e5e7eb}
+header:after{display:none}
+.brand-mark{border-radius:50%;background:#f4c542;color:#111827}
+.hero{max-width:900px;padding-top:25px}
+.eyebrow{color:#8a6500}
+h1{color:#111827;letter-spacing:-.045em}
+.hero p{color:#5b6472}
+.sell-step{background:#f8fafc;border:1px solid #e5e7eb;color:#111827}
+.sell-step strong{color:#8a6500}
+.sell-step span{color:#5b6472}
+.btn-outline{border-color:#d1d5db;color:#111827}
+main{padding-top:28px}
+.stats{margin-top:0}
+.stat,.category-item,.profit-item,.car-card,.panel{background:#fff;border:1px solid #e5e7eb;box-shadow:0 5px 18px rgba(15,23,42,.045);border-radius:18px}
+.stat strong,.category-item strong,.profit-item strong,.price{color:#111827}
+.car-grid{gap:20px}
+.car-card{transition:transform .18s ease,box-shadow .18s ease}
+.car-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.09)}
+.car-visual{height:210px;background:#eef1f5}
+.car-visual small{background:#111827}
+.car-body{padding:18px}
+.car-body h3{font-size:19px;color:#111827}
+.car-meta,.muted,.stat span,.category-item span,.profit-item span{color:#687385}
+.car-status{background:#e8f7ed;color:#14733d}
+.btn-dark{background:#111827;color:#fff}
+.btn-gold{background:#f4c542;color:#171717}
+.btn-soft{background:#f1f3f6;color:#252b35}
+input,select,textarea{background:#fff;color:#171a20;border-color:#d9dee7}
+.panel{padding:22px}
+footer{background:#111827}
+@media(max-width:560px){.car-visual{height:220px}.hero{padding-top:18px}.sell-steps{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
